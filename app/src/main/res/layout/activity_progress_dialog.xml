@@ -7,46 +7,30 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.baopingx.myapplication.myProgressDialog">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarLarge"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:indeterminate="false"
-        android:progress="@android:integer/config_shortAnimTime" />
+        android:layout_marginTop="166dp">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarNormal"
-        android:layout_below="@+id/progressBarLarge"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp"
-        android:indeterminate="false"
-        android:visibility="gone" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="New Button"
+            android:id="@+id/button18"
+            android:layout_gravity="bottom" />
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarSmall"
-        android:layout_below="@+id/progressBarNormal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="94dp"
-        android:indeterminate="false"
-        android:visibility="gone" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarHor"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/progressBarLarge"
-        android:layout_marginBottom="70dp"
-        android:indeterminate="false"
-        android:visibility="gone" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="New Button"
+            android:id="@+id/button19"
+            android:layout_gravity="bottom" />
+    </LinearLayout>
 </RelativeLayout>

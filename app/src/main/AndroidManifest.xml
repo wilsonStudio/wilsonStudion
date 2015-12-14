@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.baopingx.myapplication" >
+    package="com.example.baopingx.myapplication">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -20,34 +21,33 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
-
-        </activity>
-        <activity
-            android:name=".BtActivity"
-            android:label="@string/title_activity_bt" >
-        </activity>
-        <activity
-            android:name=".AudioRecordActivity"
-            android:label="@string/title_activity_audio_record" >
-        </activity>
-
-        <service
-            android:name=".BTservice"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
-
-        <activity android:name=".myProgressDialog" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".BtActivity"
+            android:label="@string/title_activity_bt" />
+        <activity
+            android:name=".AudioRecordActivity"
+            android:label="@string/title_activity_audio_record" />
+
+        <service
+            android:name=".BTservice"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".myProgressDialog" />
+        <activity android:name=".GetMobileInfo" />
+        <activity android:name=".CreateGestureActivity" />
+        <activity android:name=".GestureBuilderActivity" />
+        <activity android:name=".getCustomeGesture"></activity>
     </application>
 
 </manifest>

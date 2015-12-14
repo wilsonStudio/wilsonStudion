@@ -5,12 +5,14 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import static android.app.Notification.DEFAULT_LIGHTS;
 import static android.os.SystemClock.sleep;
 
 public class myProgressDialog extends AppCompatActivity {
@@ -28,11 +30,12 @@ public class myProgressDialog extends AppCompatActivity {
         {
 
             progressDlg.setProgress(i);
-            sleep(1000);
             progressDlg.show();
+
             NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
             ;
             Notification myNotication;
+            PendingIntent pd;
             //API level 11
             Intent intent = new Intent("com.rj.notitfications.SECACTIVITY");
             PendingIntent pendingIntent = PendingIntent.getActivity(myProgressDialog.this, 1, intent, 0);
@@ -48,10 +51,22 @@ public class myProgressDialog extends AppCompatActivity {
             builder.setOngoing(true);
             builder.setSubText("This is subtext...");   //API level 16
             builder.setNumber(100);
+            builder.setDefaults(DEFAULT_LIGHTS);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setColor(0xff00ff00);
+                builder.setLights(100,200,300);
+            }
             builder.build();
 
             myNotication = builder.getNotification();
             manager.notify(11, myNotication);
+
+
+            pd=PendingIntent.getActivity(this, 1, intent, 0);
+
+
+            //manager.cancel(11);
+
         }
     }
 

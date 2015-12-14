@@ -46,4 +46,15 @@
         android:layout_toEndOf="@+id/button"
         android:onClick="SwitchRecord"
         android:background="@mipmap/movie" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gesture"
+        android:id="@+id/button17"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/button"
+        android:layout_marginTop="85dp"
+        android:onClick="SwitchGesture" />
 </RelativeLayout>

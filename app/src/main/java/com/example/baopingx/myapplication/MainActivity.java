@@ -119,4 +119,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+
+    public void SwitchGesture(View view){
+        Log.d(TAG, "begin to switch Gesture activity");
+        Ev1.setText("begin to switch Gesture activity");
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, getCustomeGesture.class);
+        startActivity(intent);
+        this.finish();
+    }
 }
