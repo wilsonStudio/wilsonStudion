@@ -22,11 +22,13 @@
             android:gestureStrokeType="multiple" />
 
         <Button
+            android:id="@+id/reconize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:onClick="find"
-            android:text="@string/recognize" />
+            android:text="@string/recognize"
+            android:enabled="false" />
 
     </LinearLayout>
 </RelativeLayout>
