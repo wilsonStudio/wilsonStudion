@@ -43,6 +43,8 @@
     <string name="cancel_action">Cancel</string>
     <!-- Message displayed when the user opens the gestures settings screen -->
     <string name="gestures_loading">Loading gestures...</string>
+    <!-- Message displayed when the user add gestures reconize screen -->
+    <string name="gestures_adding">adding gestures...</string>
     <!-- Message displayed when the user has no gestures -->
     <string name="gestures_empty">No gestures</string>
     <!-- Title of the screen used to view/manage gestures -->
