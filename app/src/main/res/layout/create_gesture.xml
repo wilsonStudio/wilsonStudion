@@ -16,14 +16,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dip"
-
                 android:text="@string/prompt_gesture_name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -32,10 +30,8 @@
                 android:layout_width="0dip"
                 android:layout_weight="1.0"
                 android:layout_height="wrap_content"
-
                 android:maxLength="40"
                 android:singleLine="true" />
-
         </LinearLayout>
 
         <android.gesture.GestureOverlayView
@@ -43,26 +39,20 @@
             android:layout_width="match_parent"
             android:layout_height="0dip"
             android:layout_weight="1.0"
-
             android:gestureStrokeType="multiple" />
 
         <LinearLayout
             style="@android:style/ButtonBar"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/done"
-
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:enabled="false"
-
                 android:onClick="addGesture"
                 android:text="@string/button_done" />
 
@@ -70,10 +60,8 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:onClick="cancelGesture"
                 android:text="@string/button_discard" />
-
         </LinearLayout>
 
     </LinearLayout>
