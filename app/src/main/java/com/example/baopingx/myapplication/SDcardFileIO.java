@@ -174,12 +174,15 @@ public class SDcardFileIO {
                 OutputStream fosto = new FileOutputStream(toFile);
                 byte bt[] = new byte[1024];
                 int c;
+                Log.d(TAG, "begin");
                 while ((c = fosfrom.read(bt)) > 0)
                 {
                     fosto.write(bt, 0, c);
                 }
+                Log.d(TAG, "doing");
                 fosfrom.close();
                 fosto.close();
+                Log.d(TAG, "done");
                 return 0;
 
             } catch (Exception ex)
