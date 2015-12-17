@@ -51,7 +51,7 @@
         android:onClick="mShowFileChooser"
         style="@style/AppTheme.AppBarOverlay"
         android:background="@mipmap/folder" />
-
+    
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -63,14 +63,14 @@
         android:layout_below="@+id/button11"
         android:layout_alignParentStart="true" />
 
-
     <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="delete"
-        android:id="@+id/button20"
-        android:onClick="mDeletefile"
+        android:text="copy file"
+        android:id="@+id/button13"
         android:layout_alignTop="@+id/button12"
-        android:layout_alignEnd="@+id/button4" />
+        android:layout_alignParentEnd="true"
+        android:onClick="mCopyFile" />
 
 </RelativeLayout>
