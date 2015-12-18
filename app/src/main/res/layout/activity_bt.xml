@@ -51,16 +51,7 @@
         android:onClick="mShowFileChooser"
         style="@style/AppTheme.AppBarOverlay"
         android:background="@mipmap/folder" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New CheckBox"
-        android:id="@+id/checkBox"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="442dp" />
-
+    
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"

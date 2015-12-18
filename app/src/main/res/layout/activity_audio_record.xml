@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="start"
         android:id="@+id/button6"
-        android:layout_marginTop="133dp"
+        android:layout_marginTop="92dp"
         android:onClick="mStartRecord"
         android:background="#14ff3c"
         android:layout_below="@+id/textView3"
@@ -26,37 +26,12 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="stop"
-        android:id="@+id/button7"
-        android:onClick="mStopRecord"
-        android:background="#ff1406"
-        android:layout_alignTop="@+id/button6"
-        android:layout_toEndOf="@+id/textView3"
-        android:visibility="gone" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="play "
         android:id="@+id/button8"
         android:onClick="mPlayRecord"
         android:background="#3061ff"
-        android:layout_alignTop="@+id/button7"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pause"
-        android:id="@+id/button10"
-        android:onClick="mStopPlay"
-        android:background="#eeedff"
-        android:layout_alignTop="@+id/button8"
-        android:layout_toStartOf="@+id/button14"
-        android:visibility="gone" />
+        android:layout_alignTop="@+id/button6"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -64,8 +39,7 @@
         android:layout_height="wrap_content"
         android:text="del"
         android:id="@+id/button14"
-        android:layout_alignTop="@+id/button10"
-        android:layout_alignParentEnd="true"
         android:onClick="mdelRecord"
-        android:visibility="gone" />
+        android:layout_alignTop="@+id/button8"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

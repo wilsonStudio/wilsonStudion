@@ -1,6 +1,9 @@
 package com.example.baopingx.myapplication;
 
 
+import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,6 +16,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.CallableStatement;
 
+import android.support.v4.content.ContextCompat;
 import static junit.framework.Assert.assertNotNull;
 
 /**
@@ -174,12 +178,15 @@ public class SDcardFileIO {
                 OutputStream fosto = new FileOutputStream(toFile);
                 byte bt[] = new byte[1024];
                 int c;
+                Log.d(TAG, "begin");
                 while ((c = fosfrom.read(bt)) > 0)
                 {
                     fosto.write(bt, 0, c);
                 }
+                Log.d(TAG, "doing");
                 fosfrom.close();
                 fosto.close();
+                Log.d(TAG, "done");
                 return 0;
 
             } catch (Exception ex)
@@ -187,6 +194,5 @@ public class SDcardFileIO {
                 return -1;
             }
         }
-
 
     }

@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     android:background="#574bc4bc"
     android:theme="@style/AppTheme.PopupOverlay"
-    style="@style/AppTheme.PopupOverlay">
+    style="@style/Theme.AppCompat.Light">
 
     <Button
         android:layout_width="wrap_content"
