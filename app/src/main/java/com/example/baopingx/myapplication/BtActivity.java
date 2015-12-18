@@ -255,11 +255,12 @@ public class BtActivity extends Activity {
             }
             fosfrom.close();
             fosto.close();
-            Log.d(TAG, "done");
+            Toast.makeText(this, "copy file done", Toast.LENGTH_SHORT).show();
             return 0;
 
         } catch (Exception ex)
         {
+            Toast.makeText(this, "copy file Exception", Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Exception :"+ex);
             return -1;
         }

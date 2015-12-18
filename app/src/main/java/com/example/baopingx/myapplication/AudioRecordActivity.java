@@ -1,8 +1,13 @@
 package com.example.baopingx.myapplication;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +16,7 @@ import android.view.View;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.graphics.PixelFormat;
@@ -39,28 +45,43 @@ public class AudioRecordActivity extends Activity {
     private Button stopRecord = null;
     private Button stopPlay = null;
     private Button DelRecord = null;
-
+    private static List<String> permissions = new ArrayList<String>();
+    private short RECORD_AUDIO =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_record);
-        mText = (TextView)findViewById(R.id.textView3);
-        sdCardExit = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         Log.d(TAG, "now enter to AudioRecordActivity");
+        init();
+
+    }
+
+    public void init(){
+        //request permission at runtime
+        if(!(hasPermission(Manifest.permission.RECORD_AUDIO)&&!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)&&!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE))) {
+            permissions.add(Manifest.permission.RECORD_AUDIO);
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+            if (!permissions.isEmpty()) {
+                requestPermissions(permissions.toArray(new String[permissions.size()]), RECORD_AUDIO);
+            }
+        }
+
+        sdCardExit = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         startRecord = (Button) findViewById(R.id.button6);
         startPlay = (Button) findViewById(R.id.button8);
-        stopRecord = (Button) findViewById(R.id.button7);
-        stopPlay = (Button) findViewById(R.id.button10);
         DelRecord = (Button) findViewById(R.id.button14);
+        mText = (TextView)findViewById(R.id.textView3);
+
         //create audiofile
         if(strAudioFile.equals(""))
         {
             strAudioFile = Environment.getExternalStorageDirectory().getAbsolutePath();
-            strAudioFile += "/wilson.amr";
+            strAudioFile += File.separator+"wilson.aac";
         }
         else
         {
-            Log.d(TAG, strAudioFile + "was exites");
             File file = new File(strAudioFile);
             if(file.exists()) {
                 file.delete();
@@ -70,6 +91,18 @@ public class AudioRecordActivity extends Activity {
                     e.printStackTrace();
                 }
             }
+        }
+
+    }
+    @TargetApi(Build.VERSION_CODES.M)
+    public boolean hasPermission(String permission) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
+        }
+        else
+        {
+            Log.d(TAG, "not M build.do nothing");
+            return true;
         }
     }
 
@@ -98,7 +131,6 @@ public class AudioRecordActivity extends Activity {
             Toast.makeText(this,"pls insert SD card",Toast.LENGTH_LONG).show();
             return;
         }
-
         recorder = new MediaRecorder();
         // 设置MediaRecorder的音频源为麦克风
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -107,30 +139,23 @@ public class AudioRecordActivity extends Activity {
         //设置MediaRecorder audiofile
         recorder.setOutputFile(strAudioFile);
         // 设置MediaRecorder录制音频的编码为amr.
-        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.HE_AAC);
         try {
             recorder.prepare();// 准备录制
             recorder.start();// 开始录制
             mText.setText(" recoring.....");
-            stopRecord.setVisibility(VISIBLE);
-            stopRecord.setEnabled(true);
-            DelRecord.setVisibility(VISIBLE);
-            DelRecord.setEnabled(true);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "now end to recording");
     }
 
     public void mPlayRecord(View view)
     {
+        if(null != recorder) mStopRecord();
         mText.setText("now begin to playing.....");
         Log.d(TAG, "now begin to playing");
-        stopPlay.setVisibility(VISIBLE);
-        stopPlay.setEnabled(true);
-
         myPlay = new MediaPlayer();
         try {
             myPlay.setDataSource(strAudioFile);
@@ -138,46 +163,33 @@ public class AudioRecordActivity extends Activity {
             myPlay.start();
         } catch (IOException e) {
             e.printStackTrace();
+            myPlay.release();
+            myPlay = null;
         }
         Log.d(TAG, "now end to playing");
     }
 
-    public void mStopRecord(View view) {
-        mText.setText("now begin to stop recording.....");
+    public void mStopRecord() {
+        mText.setText("now ending recording.....");
         Log.d(TAG, "now begin to stop recording");
         recorder.stop();
+        recorder.reset();
         recorder.release();
         recorder =null;
-        startRecord.setEnabled(true);
-        startPlay.setEnabled(true);
-        startPlay.setVisibility(VISIBLE);
-        DelRecord.setVisibility(VISIBLE);
-        DelRecord.setEnabled(true);
         Log.d(TAG, "now end to stop recording");
     }
 
-    public void mStopPlay(View view)
-    {
-        mText.setText("now pause to playing.....");
-        Log.d(TAG, "now begin to pause to playing");
-        startPlay.setEnabled(true);
-        stopPlay.setEnabled(false);
-        myPlay.release();
-        myPlay = null;
-        Log.d(TAG, "now end pause to playing");
-    }
 
     public void mdelRecord(View view)
     {
-        mText.setText("now delete to recording");
-        Log.d(TAG, "now delete to recording");
+        mText.setText("now enter to delrecording");
+        Log.d(TAG, "now delete to delrecording");
         File file = new File(strAudioFile);
         if(file.exists()) {
             Log.d(TAG, strAudioFile + " was exites");
-            if(file.delete()) {
-                mText.setText("now end to recording");
+            if(!file.delete()) {
+                Log.d(TAG, "Delete recording failed");
             }
-            Log.d(TAG, "Delete recording failed");
         }
         Log.d(TAG, strAudioFile + " was not exites");
         return;

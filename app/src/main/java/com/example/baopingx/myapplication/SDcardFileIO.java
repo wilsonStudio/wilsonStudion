@@ -1,6 +1,9 @@
 package com.example.baopingx.myapplication;
 
 
+import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,6 +16,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.CallableStatement;
 
+import android.support.v4.content.ContextCompat;
 import static junit.framework.Assert.assertNotNull;
 
 /**
@@ -190,6 +194,5 @@ public class SDcardFileIO {
                 return -1;
             }
         }
-
 
     }
