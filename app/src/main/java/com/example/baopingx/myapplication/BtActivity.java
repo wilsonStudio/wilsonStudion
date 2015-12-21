@@ -230,6 +230,7 @@ public class BtActivity extends Activity {
         handler.sendMessage(msg);
     }
 
+
     public int CopySdcardFile(String fromFile, String toFile)
     {
         try
@@ -241,17 +242,13 @@ public class BtActivity extends Activity {
             totalSize = fileform.length();//get Files Total Size
             ProgressDialog progressDlg = new ProgressDialog(this);
 
-
             FileOutputStream fosto = new FileOutputStream(toFile+File.separator+fileform.getName());
             byte bt[] = new byte[1024];
-            int copyingSize = 0;
             int c= 0;
 
             while ((c = fosfrom.read(bt)) > 0)
             {
                 fosto.write(bt, 0, c);
-                copyingSize += c;
-                sendMsg(copyingSize);
             }
             fosfrom.close();
             fosto.close();
@@ -261,7 +258,7 @@ public class BtActivity extends Activity {
         } catch (Exception ex)
         {
             Toast.makeText(this, "copy file Exception", Toast.LENGTH_SHORT).show();
-            Log.e(TAG, "Exception :"+ex);
+            Log.e(TAG, "Exception :" + ex);
             return -1;
         }
     }
@@ -305,7 +302,7 @@ public class BtActivity extends Activity {
                         requestPermissions(permissions.toArray(new String[permissions.size()]), REQUEST_READ_EXTERNAL_STORAGE);
                     }
                 }
-                CopySdcardFile(path, workspace);
+                if(-1 ==CopySdcardFile(path, workspace)) finish();
 
             }
             else if(fileType.startsWith("video"))
@@ -313,16 +310,16 @@ public class BtActivity extends Activity {
                 Cursor cursor = resolver.query(uri, new String[]{MediaStore.Video.Media.DATA}, null, null, null);
                 cursor.moveToFirst();
                 String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
-                Log.d(TAG, "now begin copy " + path +" to "+workspace);
-                CopySdcardFile(path, workspace);
+                Log.d(TAG, "now begin copy " + path + " to " + workspace);
+                if(-1 ==CopySdcardFile(path, workspace)) finish();
             }
             else if(fileType.startsWith("audio"))
             {
                 Cursor cursor = resolver.query(uri, new String[]{MediaStore.Audio.Media.DATA}, null, null, null);
                 cursor.moveToFirst();
                 String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                Log.d(TAG, "now begin copy " + path +" to"+workspace);
-                CopySdcardFile(path, workspace);
+                Log.d(TAG, "now begin copy " + path + " to" + workspace);
+                if(-1 ==CopySdcardFile(path, workspace)) finish();
             }
 
             else if(fileType.startsWith("text"))
@@ -331,7 +328,7 @@ public class BtActivity extends Activity {
                 cursor.moveToFirst();
                 String path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
                 Log.d(TAG, "now begin copy " + path +" to"+workspace);
-                CopySdcardFile(path, workspace);
+                if(-1 ==CopySdcardFile(path, workspace)) finish();
             }
             else
             {

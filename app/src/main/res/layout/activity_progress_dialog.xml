@@ -20,7 +20,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="New Button"
+            android:text="image"
             android:id="@+id/button18"
             android:layout_gravity="bottom" />
 
@@ -29,7 +29,7 @@
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="New Button"
+            android:text="circle"
             android:id="@+id/button19"
             android:layout_gravity="bottom" />
     </LinearLayout>
