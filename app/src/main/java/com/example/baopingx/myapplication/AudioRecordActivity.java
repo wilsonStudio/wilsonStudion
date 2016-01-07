@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.Menu;
@@ -35,6 +36,7 @@ import static android.view.View.*;
 
 public class AudioRecordActivity extends Activity {
     private static final String TAG = "wilson_record";
+    private static final byte MY_PERMISSIONS_REQUEST_RECORD_AUDIO = 1;
     private MediaPlayer myPlay = null;
     private MediaRecorder recorder = null;
     private String strAudioFile = "";
@@ -58,7 +60,7 @@ public class AudioRecordActivity extends Activity {
 
     public void init(){
         //request permission at runtime
-        if(!(hasPermission(Manifest.permission.RECORD_AUDIO)&&!hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)&&!hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE))) {
+        if (!(hasPermission(Manifest.permission.RECORD_AUDIO) && !hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) && !hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE))) {
             permissions.add(Manifest.permission.RECORD_AUDIO);
             permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -94,6 +96,7 @@ public class AudioRecordActivity extends Activity {
         }
 
     }
+
     @TargetApi(Build.VERSION_CODES.M)
     public boolean hasPermission(String permission) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
